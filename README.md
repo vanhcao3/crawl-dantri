@@ -15,10 +15,10 @@ npm install
 ```
 2. Crawl data bằng news-please:
    Tại thư mục chứa project:
-   ```sh
-   cd news-please/newsplease
-   python **main**.py
-   ```
+```sh
+cd news-please/newsplease
+python __main__.py
+```
 3. Ghi dữ liệu vào file csv
    Tại thư mục chứa project:
 ```sh
