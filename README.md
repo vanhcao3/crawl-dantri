@@ -11,6 +11,8 @@ Crawl dữ liệu bài báo cho Project DM & ML
 1. Clone repo
 ```sh
 git clone https://github.com/vanhcao3/crawl-dantri.git
+cd crawl-dantri
+git clone https://github.com/fhamborg/news-please.git
 npm install
 ```
 2. Crawl data bằng news-please:
