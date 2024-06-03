@@ -1,6 +1,3 @@
-
-Yêu cầu: - Cài nodejs và python - npm install (Chạy lần đầu tiên clone repo về) - Chưa thay đổi PC name (tên thư mục C:/Users/<tên máy tính> và tên của máy tính trùng nhau). Nếu thông, thay đổi ở biến directoryPath
-
 # Project
 Crawl dữ liệu bài báo cho Project DM & ML
 
