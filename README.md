@@ -2,11 +2,16 @@ Yêu cầu: - Cài nodejs và python - npm install (Chạy lần đầu tiên cl
 
 1. Crawl data bằng news-please:
    Tại thư mục chứa project:
+   ```sh
    cd news-please/newsplease
    python **main**.py
-
-2. Ghi dữ liệu vào file csv
+   ```
+3. Ghi dữ liệu vào file csv
    Tại thư mục chứa project:
+```sh
    node .
-   hoặc
+```
+hoặc
+```sh 
    node index.js
+```
