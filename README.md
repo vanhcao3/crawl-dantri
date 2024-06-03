@@ -26,3 +26,5 @@ python __main__.py
 ```sh
 node .
 ```
+## Output
+Kết quả được lưu trong thư muc Output dưới dạng .csv
