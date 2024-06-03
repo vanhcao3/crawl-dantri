@@ -22,5 +22,5 @@ python __main__.py
 3. Ghi dữ liệu vào file csv
    Tại thư mục chứa project:
 ```sh
-   node .
+node .
 ```
