@@ -4,6 +4,7 @@ const cheerio = require('cheerio');
 const ObjectsToCsv = require('objects-to-csv');
 const os = require('os');
 const { format } = require('date-fns');
+const crypto = require('crypto');
 
 const pcName = os.hostname();
 const currentDate = new Date();
@@ -15,13 +16,17 @@ const outputFileName = format(currentDate, 'yyyy-MM-dd') + '.csv';
 const outputCsvPath = path.join(outputDir, outputFileName);
 const batchSize = 500; 
 
-const seenTitles = new Set();
-const seenDescriptions = new Set();
-let totalRecords = 0;
+const seenTitleHashes = new Set();
+const seenDescriptionHashes = new Set();
+let totalAppendedRecords = 0;
 
 function extractCategoryFromFilename(filename) {
   const parts = filename.split('_');
   return parts[0].replace(/-/g, ' ');
+}
+
+function hashString(str) {
+  return crypto.createHash('sha256').update(str).digest('hex');
 }
 
 async function processFiles() {
@@ -51,15 +56,18 @@ async function processFiles() {
           continue;
         }
 
-        if (seenTitles.has(title) || seenDescriptions.has(description)) {
+        const titleHash = hashString(title);
+        const descriptionHash = hashString(description);
+
+        if (seenTitleHashes.has(titleHash) || seenDescriptionHashes.has(descriptionHash)) {
           continue;
         }
 
-        seenTitles.add(title);
-        seenDescriptions.add(description);
+        seenTitleHashes.add(titleHash);
+        seenDescriptionHashes.add(descriptionHash);
 
         records.push({ title, description, category });
-        totalRecords++;
+        totalAppendedRecords++;
       }
 
       const csv = new ObjectsToCsv(records);
@@ -68,7 +76,7 @@ async function processFiles() {
       console.log(`Processed batch ${i / batchSize + 1} / ${Math.ceil(totalFiles / batchSize)}`);
     }
 
-    console.log(`CSV file updated successfully. Total records appended: ${totalRecords}`);
+    console.log(`CSV file created successfully. Total records appended: ${totalAppendedRecords}`);
 
   } catch (error) {
     console.error('Error processing files:', error);
